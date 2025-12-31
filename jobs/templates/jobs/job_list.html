@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Listings</title>
+</head>
+<body>
+
+<a href="{% url 'my_applications' %}">My Applications</a>
+<hr>
+
+<h1>Available Jobs</h1>
+
+{% for job in jobs %}
+    <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+        <h3>{{ job.title }}</h3>
+        <p><strong>Company:</strong> {{ job.company }}</p>
+        <p><strong>Location:</strong> {{ job.location }}</p>
+        <p>{{ job.description }}</p>
+
+        <!-- APPLY BUTTON -->
+        <a href="{% url 'apply_job' job.id %}">
+            <button>Apply</button>
+        </a>
+    </div>
+{% empty %}
+    <p>No jobs available</p>
+{% endfor %}
+
+</body>
+</html>
+
